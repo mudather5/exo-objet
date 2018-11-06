@@ -1,49 +1,3 @@
-//exo 1 partie 1
-var user = {
-  firstName: 'Manon',
-  lastName: 'Jac',
-  placeOf_birth: 'Farnce',
-  payment_by: ['cart-Master', 'cart-Visa', 'cart-Blue'],
-  age: 28,
-
-  birth_day: function(){
-  var today = new Date();
-  var birthday = today.getFullYear();
-  return  birthday - this.age;
-  }
-};
-
-  alert("she is " + user.firstName);
-  alert("her father's name is " + user.lastName);
-  alert("she was born in " + user.birth_day());
-
-exo 1 partie 2
-var liste = {
-  country: ['FRANCE', 'ENGLAN', 'SPAIN', 'SWISSE'],
-  payment: ['MASTER_CART', 'VISA_CART', 'BLUE_CART'],
-  mini_age: 17
-};
-
-if(liste.mini_age >= 17){
-  document.getElementById("object").innerHTML = "you have the rite to see this page";
-}else{
-  document.getElementById("object").innerHTML = "you are too fucking young";
-}
-
- var pays = "FRANCE";
-
-if (liste.country.indexOf(pays) < 0) {
-  document.getElementById("objet").innerHTML = "pays est n'existe pas dans la liste de country";
-}else{
-    document.getElementById("objet").innerHTML = " pays existe dans la liste de country";
-}
-
-var payer = "MASTER_CART";
-if(liste.payment.indexOf(payer) < 0){
-    document.getElementById("payer").innerHTML = "payer est n'existe pas dans la liste de payement";
-}else{
-    document.getElementById("payer").innerHTML = " payer existe dans la liste de payement";
-}
 
 //exo 2 partie 1
 // function gameAttack(name, attack, life){
@@ -52,6 +6,7 @@ if(liste.payment.indexOf(payer) < 0){
 //   this.life = life;
 //   this.fight = function(against){
 //
+//    alert(this.name + " attacked " + against.name);// in order to display the name of attacker and who has been attacked
 //     return against.life = against.life - this.attack;
 //   }
 // };
@@ -59,46 +14,52 @@ if(liste.payment.indexOf(payer) < 0){
 // var sara = new gameAttack("Sara", 8, 70);
 // var manon = new gameAttack("Manon", 10, 50);
 //
-// alert(manon.name + " " + "attack" + " " + sara.name + " "+ manon.fight(sara));
-// alert(sara.name + " " + "attack" + " " + manon.name + " "+sara.fight(manon));
+// alert("It rest " + manon.fight(sara) + " life for " + sara.name);// for displaing the rest of life for who has been attacked
+// alert("It rest " + sara.fight(manon) + " life for " + manon.name);// for displaing the rest of life for who has been attacked
 //
 
-// //exo 2 partie  2
-//
-// function gameAttack(name, attack, life){
-//   this.name = name;
-//   this.attack = attack;
-//   this.life = life;
-//   this.fight = function(against){
-//     return against.life = against.life - this.attack;
-//     }
-//
-// };
-// var soin = new gameAttack("Soin", 20, 80);
-// var magic = new gameAttack("Magic", 20, 50);
-// alert(soin.fight(magic));
+//exo 2 partie  2
 
-// function Magician(name, attack, life, magic){
-//   this.name = name;
-//   this.attack = attack;
-//   this.life = life;
-//   this.magic = magic;
-//   this.score = 0;
-//   this.fight = function(against){
-//     against.life -= this.attack;
-//       if(magic > 0){
-//         this.life += 10;
-//         this.magic -= 20;
-//       }else{
-//         console.log("vous pouver pas jouer");
-//       }
-//
-//         return this.magic;
-//     }
-//
-// };
-//
-// var soin = new Magician("Soin", 20, 80, 100);
-// var magic = new Magician("Magic", 20, 50, 100);
-//
-// alert(soin.fight(magic));
+function gameAttack(name, attack, life){
+  this.name = name;
+  this.attack = attack;
+  this.life = life;
+  this.figh = function(against){
+
+      return against.life = against.life - this.attack;
+    }
+
+
+};
+
+function Magician(name, attack, life, magic){
+  this.name = name;
+  this.attack = attack;
+  this.life = life;
+  this.magic = magic;
+  this.fight = function(against){
+
+    //  alert(this.name + " attacked " + against.name);// in order to display the name of attacker and who has been attacked
+      if(against.magic > 0){
+
+          alert(against.name + " wanted to be treated");// in order to display the name of attacker and who has been attacked
+        this.life += 10;
+        against.magic -= 20;
+
+      }else{
+
+        alert("vous pouver pas jouer");
+      }
+
+        return against.magic;
+    }
+
+
+};
+
+var magicien = new Magician("Mage", 20, 50, 40);
+var guerrier = new Magician("Guerrier", 20, 100, 40);
+
+
+alert("It rests " + guerrier.fight(magicien) + " life for " + magicien.name);
+alert("It rests " + magicien.fight(guerrier) + " life for " + guerrier.name);
